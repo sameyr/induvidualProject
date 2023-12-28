@@ -14,7 +14,12 @@
 
    while($row = $result->fetch_assoc()) 
         { 
-            echo "data_Fuel_manifold_Pressure: " . $row["data_Fuel_manifold_Pressure"] . "<br>";
+            $dataFuelMainfold[] = $row;
+            //echo "data_Fuel_manifold_Pressure: " . $row["data_Fuel_manifold_Pressure"] . "<br>";
         } 
+    
+    foreach ($dataFuelMainfold as $dataFuelMainfold) {
+        echo $dataFuelMainfold['data_Fuel_manifold_Pressure'] . "<br>";
+    }
 
 ?>
