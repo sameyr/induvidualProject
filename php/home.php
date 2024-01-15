@@ -6,16 +6,20 @@
 
    $mysqli = require __DIR__ ."/database.php";
 
-   $sql = sprintf("SELECT data_Fuel_manifold_Pressure FROM sampleinputdata 
-                WHERE timestamp = '%s';", 
-            $mysqli -> real_escape_string($_POST["timestamp"]));
+   $selectedColumn =$mysqli -> real_escape_string($_POST["selectedColumn"]);
+
+   
+   $sql = sprintf("SELECT %s FROM sampleinputdata 
+                WHERE timestamp = '%s';",
+                $selectedColumn,     
+                $mysqli -> real_escape_string($_POST["timestamp"]));
 
    $result = $mysqli -> query($sql);
 
    while($row = $result->fetch_assoc()) 
         { 
-            $dataFuelMainfold[] = $row;
-            //echo "data_Fuel_manifold_Pressure: " . $row["data_Fuel_manifold_Pressure"] . "<br>";
+            $column_data[] = $row;
+            echo "$selectedColumn: " . $row["$selectedColumn"] . "<br>";
         } 
     
     /*foreach ($dataFuelMainfold as $dataFuelMainfold) {
@@ -31,13 +35,13 @@
 </head>
 <body>
     <script>
-        // Assuming PHP echoes the data in JSON format
-        var rawData = <?php echo json_encode($dataFuelMainfold); ?>;
-        
-        
-        // Extracting the pressure values from the nested array
-        var data_Fuel_manifold_Pressure = rawData.map(function(d) {
-            return d.data_Fuel_manifold_Pressure;
+        // PHP echoes the data in JSON format
+        var rawData = <?php echo json_encode($column_data); ?>;
+        var selectedColumn = "<?php echo $selectedColumn; ?>";
+
+        // Extracting the values from the selected column
+        var data_column = rawData.map(function(d) {
+            return d[selectedColumn];
         });
 
         var container = d3.select("body")
@@ -48,19 +52,18 @@
             .attr("transform", "translate(100,100)");
 
         var xScale = d3.scaleLinear()
-                        .domain([0, data_Fuel_manifold_Pressure.length - 1])
+                        .domain([0, data_column.length - 1])
                         .range([0, 500]);
 
         var yScale = d3.scaleLinear()
-                        .domain([d3.min(data_Fuel_manifold_Pressure), d3.max(data_Fuel_manifold_Pressure)])
+                        .domain([d3.min(data_column), d3.max(data_column)])
                         .range([100, 0]);
 
-
-        var scale = d3.scaleLinear().domain([0,60]).range([0,500]);
+        var scale = d3.scaleLinear().domain([0, data_column.length]).range([0, 500]);
         var axis = d3.axisBottom(scale);
 
         var line = container.selectAll("line")
-            .data(data_Fuel_manifold_Pressure)
+            .data(data_column)
             .enter()
             .append("line")
             .attr("x1", function (d, i) { return xScale(i); })
