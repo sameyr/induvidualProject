@@ -49,11 +49,12 @@
 
 <script>
     var selected_column = null;
-
+    
+    //Event Listner for column selection
     document.getElementById("columnSelect").addEventListener("change",function(){
         selected_column=this.value;
-        document.getElementById("selectedColumnInput").value=selected_column;
-        console.log(selected_column);
+
+        document.getElementById("selectedColumnInput").value=selected_column; //updating the hidden input field value with the selected column
     })
 
 </script>
