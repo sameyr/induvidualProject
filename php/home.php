@@ -1,6 +1,6 @@
 <?php
     
-   if (empty($_POST["timestamp"])){
+   if ((empty($_POST["startTimestamp"])) || (empty($_POST["endTimestamp"]))){
         die("Timestamp required");
    }
 
@@ -10,10 +10,11 @@
 
    
    $sql = sprintf("SELECT %s FROM sampleinputdata 
-                WHERE timestamp = '%s';",
-                $selectedColumn,     
-                $mysqli -> real_escape_string($_POST["timestamp"]));
-
+                    WHERE timestamp = '%s';",
+                    $selectedColumn,     
+                    $mysqli -> real_escape_string($_POST["startTimestamp"]));
+    
+   echo $sql;
    $result = $mysqli -> query($sql);
 
    while($row = $result->fetch_assoc()) 

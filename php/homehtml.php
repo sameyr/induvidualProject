@@ -38,8 +38,18 @@
             </select>
 
         <div>
-            <label for="timestamp">Timestamp</label>
-            <input type="text" id="timestamp" name="timestamp">
+
+                <!-- Input for start timestamp -->
+            <label for="startTimestamp">Start Time:</label>
+            <input type="text" id="startTimestamp" name="startTimestamp" required>
+
+            <!-- Input for end timestamp -->
+            <label for="endTimestamp">End Time:</label>
+            <input type="text" id="endTimestamp" name="endTimestamp" required>
+
+            <!--<label for="timestamp">Timestamp</label>
+            <input type="text" id="timestamp" name="timestamp">-->
+            
         <div>
 
         <button type="submit"> Submit </button>
