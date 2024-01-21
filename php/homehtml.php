@@ -35,8 +35,8 @@
                         echo "<option value=\"$column\">$column</option>";
                     }
                 ?>
-            </select>
-
+            </select>                
+        
         <div>
 
                 <!-- Input for start timestamp -->
@@ -59,7 +59,7 @@
 
 <script>
     var selected_column = null;
-    
+
     //Event Listner for column selection
     document.getElementById("columnSelect").addEventListener("change",function(){
         selected_column=this.value;
