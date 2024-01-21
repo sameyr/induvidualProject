@@ -8,14 +8,18 @@
 
    $selectedColumn =$mysqli -> real_escape_string($_POST["selectedColumn"]);
 
-   
-   $sql = sprintf("SELECT %s FROM sampleinputdata 
-                    WHERE timestamp = '%s';",
+   $sql = sprintf("SELECT %s FROM sampleinputdata
+                    WHERE STR_TO_DATE(timestamp, '%%m/%%d/%%Y %%H:%%i') 
+                    BETWEEN STR_TO_DATE('%s', '%%m/%%d/%%Y %%H:%%i')
+                    AND STR_TO_DATE('%s', '%%m/%%d/%%Y %%H:%%i');",
                     $selectedColumn,     
-                    $mysqli -> real_escape_string($_POST["startTimestamp"]));
-    
-   echo $sql;
+                    $mysqli -> real_escape_string($_POST["startTimestamp"]),
+                    $mysqli -> real_escape_string($_POST["endTimestamp"]));
+   
+   
+    echo $sql;                    
    $result = $mysqli -> query($sql);
+
 
    while($row = $result->fetch_assoc()) 
         { 
