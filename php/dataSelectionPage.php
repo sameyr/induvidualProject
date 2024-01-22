@@ -78,7 +78,7 @@
 </head>
 <body>
 
-    <form action="home.php" method="POST">
+    <form action="dataVisualising.php" method="POST">
 
         <input type="hidden" id="selectedColumnInput" name="selectedColumn" value="">
 
@@ -88,7 +88,7 @@
             <ul class="items">
                     <?php
                         foreach ($columns as $column) {
-                            echo "<label><input type=\"checkbox\" name=\"selectedColumns[]\" value=\"$column\"> $column</label>";
+                            echo "<label><input type=\"checkbox\" name=\"selectedColumns[]\" value=\"$column\"> $column</label> <br>";
                         }
                     ?>
             </ul>
@@ -111,19 +111,22 @@
 
     <script>
 
-        var selected_column = [];
+        var selectedColumns = [];
 
-        // Event listener for column selection
+        // adding checkmark according to user selection
         var checkList = document.getElementById('list1');
         checkList.getElementsByClassName('anchor')[0].onclick = function(evt) {
             if (checkList.classList.contains('visible'))
                 checkList.classList.remove('visible');
             else
                 checkList.classList.add('visible');
-                selected_column = this.value;
+                selectedColumns = Array.from(document.querySelectorAll('input[name="selectedColumns[]"]:checked'))
+                                            .map(function(checkbox) {
+                                                return checkbox.value;
+                                            });
+                console.log(selectedColumns);
+                document.getElementById("selectedColumnInput").value = selectedColumns.join(",");
             }
-            
-        document.getElementById("selectedColumnInput").value = selected_column;
     </script>
 </body>
 </html>

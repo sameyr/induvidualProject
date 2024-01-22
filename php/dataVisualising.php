@@ -7,6 +7,10 @@
    $mysqli = require __DIR__ ."/database.php";
 
    $selectedColumn =$mysqli -> real_escape_string($_POST["selectedColumn"]);
+    
+   $selectedColumnString = isset($_POST["selectedColumn"]) ? $_POST["selectedColumn"] : '';
+   $selectedColumnArray = explode(",", $selectedColumnString);
+   //$escapedColumns = array_map([$mysqli, 'real_escape_string'], $selectedColumnArray);
 
    $sql = sprintf("SELECT %s FROM sampleinputdata
                     WHERE STR_TO_DATE(timestamp, '%%m/%%d/%%Y %%H:%%i') 
@@ -17,11 +21,32 @@
                     $mysqli -> real_escape_string($_POST["endTimestamp"]));
    
    
-    echo $sql;                    
-   $result = $mysqli -> query($sql);
+    echo $sql . "<br>";                    
+    $result = $mysqli -> query($sql);
 
 
-   while($row = $result->fetch_assoc()) 
+    // Initialize an array to hold the data for each selected column
+    $columnData = [];
+
+    while ($row = $result->fetch_assoc()) {  //fetching rows for multiple column
+        foreach ($selectedColumnArray as $column) {
+            $columnData[$column][] = [
+                'value' => $row[$column],
+            ];
+        }
+    }
+
+    // Output the data for each selected column
+    foreach ($columnData as $column => $data) {
+        echo "$column:<br>";
+        foreach ($data as $item) {
+            echo  "Value: " . $item['value'] . "<br>";
+        }
+        echo "<br>";
+    }
+   
+
+   /*while($row = $result->fetch_assoc()) // fetching rows for only one column
         { 
             $column_data[] = $row;
             echo "$selectedColumn: " . $row["$selectedColumn"] . "<br>";
@@ -40,11 +65,12 @@
 </head>
 <body>
     <script>
-        // PHP echoes the data in JSON format
-        var rawData = <?php echo json_encode($column_data); ?>;
-        var selectedColumn = "<?php echo $selectedColumn; ?>";
+         // Encode $columnData as an indexed array before outputting
+        var rawData =<?php echo json_encode(array_values($columnData)); ?>;
+        var selectedColumn = "<?php echo $selectedColumnArray[0]; ?>";
 
-        // Extracting the values from the selected column
+        console.log(typeof rawData, rawData);
+        // Extracting the values from the selected columns
         var data_column = rawData.map(function(d) {
             return d[selectedColumn];
         });

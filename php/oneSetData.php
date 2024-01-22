@@ -24,9 +24,10 @@
 </head>
 <body>
 
-    <form action="home.php" method="POST">
+    <form action="oneSetDataVisual.php" method="POST">
 
         <input type="hidden" id = "selectedColumnInput" name="selectedColumn" value ="">
+        
         <!-- Dropdown menu to select column -->
         <label for="columnSelect">Select Column:</label>
             <select id="columnSelect">
