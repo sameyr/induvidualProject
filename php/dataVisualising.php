@@ -1,13 +1,19 @@
 <?php
     
-   if ((empty($_POST["startTimestamp"])) || (empty($_POST["endTimestamp"]))){
-        die("Timestamp required");
+    if((empty($_POST["startTimestamp"])) || (empty($_POST["endTimestamp"]))){
+        die("Error, please enter proper value in timestamp box.");
+   } 
+    
+
+   if ((strtotime($_POST["endTimestamp"])) <  (strtotime($_POST["startTimestamp"]))){
+        die("Error, please try again.<br> End Time is greater than Start Time.");
    }
 
    $mysqli = require __DIR__ ."/database.php";
 
+   
    $selectedColumn =$mysqli -> real_escape_string($_POST["selectedColumn"]);
-    
+   
    $selectedColumnString = isset($_POST["selectedColumn"]) ? $_POST["selectedColumn"] : '';
    $selectedColumnArray = explode(",", $selectedColumnString);
    //$escapedColumns = array_map([$mysqli, 'real_escape_string'], $selectedColumnArray);
@@ -28,6 +34,7 @@
     // Initialize an array to hold the data for each selected column
     $columnData = [];
 
+
     while ($row = $result->fetch_assoc()) {  //fetching rows for multiple column
         foreach ($selectedColumnArray as $column) {
             $columnData[$column][] = [
@@ -36,14 +43,16 @@
         }
     }
 
-    // Output the data for each selected column
-    foreach ($columnData as $column => $data) {
+    echo(array_value($columnData));
+
+    // prints the data for each selected column
+    /*foreach ($columnData as $column => $data) {
         echo "$column:<br>";
         foreach ($data as $item) {
             echo  "Value: " . $item['value'] . "<br>";
         }
         echo "<br>";
-    }
+    }*/
    
 
    /*while($row = $result->fetch_assoc()) // fetching rows for only one column
@@ -69,12 +78,12 @@
         var rawData =<?php echo json_encode(array_values($columnData)); ?>;
         var selectedColumn = "<?php echo $selectedColumnArray[0]; ?>";
 
-        console.log(typeof rawData, rawData);
         // Extracting the values from the selected columns
         var data_column = rawData.map(function(d) {
             return d[selectedColumn];
         });
 
+        console.log(data_column);
         var container = d3.select("body")
             .append("svg")
             .attr("height", 500)
