@@ -33,6 +33,7 @@
 
     // Initialize an array to hold the data for each selected column
     $columnData = [];
+    $separateArrays = [];
 
     while ($row = $result->fetch_assoc()) {
         foreach ($selectedColumnArray as $column) {
@@ -48,18 +49,32 @@
             ];
         }
     }*/
+    
+    foreach ($columnData as $column => $data) {
+        $temp_array=[];
+        foreach ($data['values'] as $value) {
+            $temp_array[] = $value;
+        }
+        $separateArrays[$column] =$temp_array; 
+    }
 
-   // echo(array_value($columnData));
+    foreach ($separateArrays as $column => $values) {
+        echo "Column: $column<br>";
+        foreach ($values as $value) {
+            echo "Value: $value<br>";
+        }
+        echo "<br>";
+    }
 
 
     // prints the data for each selected column
-    foreach ($columnData as $column => $data) {
+    /*foreach ($columnData as $column => $data) {
         echo "$column:<br>";
         foreach ($data['values'] as $value) {
             echo  "Value: " . $value . "<br>";
         }
         echo "<br>";
-    }
+    }*/
    
 
    /*while($row = $result->fetch_assoc()) // fetching rows for only one column

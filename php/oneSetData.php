@@ -13,6 +13,16 @@
         $columns[] = $row['Field']; 
     }
 
+    // Retrieve distinct timestamps from the database
+    $timestampQuery = "SELECT DISTINCT timestamp FROM $tableName";
+    $timestampResult = $mysqli->query($timestampQuery);
+
+    $timestamps = [];
+    while ($row = $timestampResult->fetch_assoc()) {
+        $timestamps[] = $row['timestamp'];
+    }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -39,14 +49,28 @@
             </select>                
         
         <div>
-
-                <!-- Input for start timestamp -->
-            <label for="startTimestamp">Start Time:</label>
-            <input type="text" id="startTimestamp" name="startTimestamp" required>
+            <input type="hidden" id = "selectedStartTimeInput" name="startTimestamp" value ="">
+            <label for="startTimestamp">Select Timestamp:</label>
+            <select id="startTimestamp">
+                <?php
+                    foreach ($timestamps as $timestamp) {
+                        echo "<option value=\"$timestamp\">$timestamp</option>";
+                    }
+                ?>
+            </select>
 
             <!-- Input for end timestamp -->
-            <label for="endTimestamp">End Time:</label>
-            <input type="text" id="endTimestamp" name="endTimestamp" required>
+            <div>
+            <input type="hidden" id = "selectedEndTimeInput" name="endTimestamp" value ="">
+            <label for="endTimestamp">Select Second Timestamp:</label>
+            <select id="endTimestamp" >
+            <?php
+                    foreach ($timestamps as $timestamp) {
+                        echo "<option value=\"$timestamp\">$timestamp</option>";
+                    }
+                ?>
+            </select>
+        </div>
 
             <!--<label for="timestamp">Timestamp</label>
             <input type="text" id="timestamp" name="timestamp">-->
@@ -60,12 +84,30 @@
 
 <script>
     var selected_column = null;
-
+    var selected_start = null;
+    var selected_end = null;
+    
     //Event Listner for column selection
     document.getElementById("columnSelect").addEventListener("change",function(){
         selected_column=this.value;
-
+        
         document.getElementById("selectedColumnInput").value=selected_column; //updating the hidden input field value with the selected column
+    })
+
+    
+    // Event listener for timestamp selection
+    document.getElementById("startTimestamp").addEventListener("change", function () {
+        // Get the selected timestamp
+        selected_start = this.value;
+        document.getElementById("selectedStartTimeInput").value=selected_start;
+
+    })
+
+    document.getElementById("endTimestamp").addEventListener("change", function () {
+        // Get the selected timestamp
+        selected_end = this.value;
+        document.getElementById("selectedEndTimeInput").value=selected_end;
+
     })
 
 </script>
