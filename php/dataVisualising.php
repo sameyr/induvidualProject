@@ -1,32 +1,32 @@
 <?php
-    
+
     if((empty($_POST["startTimestamp"])) || (empty($_POST["endTimestamp"]))){
         die("Error, please enter proper value in timestamp box.");
-   } 
+    }    
     
 
-   if ((strtotime($_POST["endTimestamp"])) <  (strtotime($_POST["startTimestamp"]))){
+    if ((strtotime($_POST["endTimestamp"])) <  (strtotime($_POST["startTimestamp"]))){
         die("Error, please try again.<br> End Time is greater than Start Time.");
-   }
+    }
 
-   $mysqli = require __DIR__ ."/database.php";
+    $mysqli = require __DIR__ ."/database.php";
 
-   
-   $selectedColumn =$mysqli -> real_escape_string($_POST["selectedColumn"]);
-   
-   $selectedColumnString = isset($_POST["selectedColumn"]) ? $_POST["selectedColumn"] : '';
-   $selectedColumnArray = explode(",", $selectedColumnString);
-   //$escapedColumns = array_map([$mysqli, 'real_escape_string'], $selectedColumnArray);
+    
+    $selectedColumn =$mysqli -> real_escape_string($_POST["selectedColumn"]);
+    
+    $selectedColumnString = isset($_POST["selectedColumn"]) ? $_POST["selectedColumn"] : '';
+    $selectedColumnArray = explode(",", $selectedColumnString);
+    //$escapedColumns = array_map([$mysqli, 'real_escape_string'], $selectedColumnArray);
 
-   $sql = sprintf("SELECT %s FROM sampleinputdata
-                    WHERE STR_TO_DATE(timestamp, '%%m/%%d/%%Y %%H:%%i') 
-                    BETWEEN STR_TO_DATE('%s', '%%m/%%d/%%Y %%H:%%i')
-                    AND STR_TO_DATE('%s', '%%m/%%d/%%Y %%H:%%i');",
-                    $selectedColumn,     
-                    $mysqli -> real_escape_string($_POST["startTimestamp"]),
-                    $mysqli -> real_escape_string($_POST["endTimestamp"]));
-   
-   
+    $sql = sprintf("SELECT %s FROM sampleinputdata
+                        WHERE STR_TO_DATE(timestamp, '%%m/%%d/%%Y %%H:%%i') 
+                        BETWEEN STR_TO_DATE('%s', '%%m/%%d/%%Y %%H:%%i')
+                        AND STR_TO_DATE('%s', '%%m/%%d/%%Y %%H:%%i');",
+                        $selectedColumn,     
+                        $mysqli -> real_escape_string($_POST["startTimestamp"]),
+                        $mysqli -> real_escape_string($_POST["endTimestamp"]));
+    
+    
     echo $sql . "<br>";                    
     $result = $mysqli -> query($sql);
 
@@ -44,6 +44,7 @@
     }
 
     echo(array_value($columnData));
+
 
     // prints the data for each selected column
     /*foreach ($columnData as $column => $data) {

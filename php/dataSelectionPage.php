@@ -1,16 +1,21 @@
 <?php
-    $mysqli = require __DIR__."/database.php";
+    if(($_POST['username'] == "samir") && ($_POST['password'] == "shrestha") ){
+        $mysqli = require __DIR__."/database.php";
 
-    //Retriving Column name from database
-    $tableName ='sampleinputdata';
-    $query ="SHOW COLUMNS FROM $tableName";
-    $result = $mysqli->query($query);
+        //Retriving Column name from database
+        $tableName ='sampleinputdata';
+        $query ="SHOW COLUMNS FROM $tableName";
+        $result = $mysqli->query($query);
 
 
-    //creating empty array and populating array using result 
-    $coulmns = [];
-    while ($row = $result -> fetch_assoc()){
-        $columns[] = $row['Field']; 
+        //creating empty array and populating array using result 
+        $coulmns = [];
+        while ($row = $result -> fetch_assoc()){
+            $columns[] = $row['Field']; 
+        }
+    }
+    else{
+        die("wrong credential");
     }
 
 ?>
