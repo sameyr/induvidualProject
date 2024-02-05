@@ -34,26 +34,32 @@
     // Initialize an array to hold the data for each selected column
     $columnData = [];
 
+    while ($row = $result->fetch_assoc()) {
+        foreach ($selectedColumnArray as $column) {
+            $columnData[$column]['values'][] = $row[$column];
+        }
+    }
 
-    while ($row = $result->fetch_assoc()) {  //fetching rows for multiple column
+
+    /*while ($row = $result->fetch_assoc()) {  //fetching rows for multiple column
         foreach ($selectedColumnArray as $column) {
             $columnData[$column][] = [
                 'value' => $row[$column],
             ];
         }
-    }
+    }*/
 
-    echo(array_value($columnData));
+   // echo(array_value($columnData));
 
 
     // prints the data for each selected column
-    /*foreach ($columnData as $column => $data) {
+    foreach ($columnData as $column => $data) {
         echo "$column:<br>";
-        foreach ($data as $item) {
-            echo  "Value: " . $item['value'] . "<br>";
+        foreach ($data['values'] as $value) {
+            echo  "Value: " . $value . "<br>";
         }
         echo "<br>";
-    }*/
+    }
    
 
    /*while($row = $result->fetch_assoc()) // fetching rows for only one column
