@@ -42,6 +42,7 @@
     <script>
         // PHP echoes the data in JSON format
         var rawData = <?php echo json_encode($column_data); ?>;
+        
         var selectedColumn = "<?php echo $selectedColumn; ?>";
 
         // Extracting the values from the selected column

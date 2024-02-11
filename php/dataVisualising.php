@@ -30,16 +30,18 @@
     echo $sql . "<br>";                    
     $result = $mysqli -> query($sql);
 
-
     // Initialize an array to hold the data for each selected column
     $columnData = [];
-    $separateArrays = [];
 
     while ($row = $result->fetch_assoc()) {
         foreach ($selectedColumnArray as $column) {
-            $columnData[$column]['values'][] = $row[$column];
+            $columnData[$column][] = $row[$column];
         }
     }
+
+    print_r ($columnData);
+
+    echo $columnData[data_Oil_Pressure];
 
 
     /*while ($row = $result->fetch_assoc()) {  //fetching rows for multiple column
@@ -50,31 +52,14 @@
         }
     }*/
     
-    foreach ($columnData as $column => $data) {
-        $temp_array=[];
-        foreach ($data['values'] as $value) {
-            $temp_array[] = $value;
-        }
-        $separateArrays[$column] =$temp_array; 
-    }
-
-    foreach ($separateArrays as $column => $values) {
-        echo "Column: $column<br>";
-        foreach ($values as $value) {
-            echo "Value: $value<br>";
-        }
-        echo "<br>";
-    }
-
-
     // prints the data for each selected column
-    /*foreach ($columnData as $column => $data) {
-        echo "$column:<br>";
-        foreach ($data['values'] as $value) {
+    foreach ($columnData as $column => $data) {
+        echo "<br>$column:<br>";
+        foreach ($data as $value) {
             echo  "Value: " . $value . "<br>";
         }
         echo "<br>";
-    }*/
+    }
    
 
    /*while($row = $result->fetch_assoc()) // fetching rows for only one column
