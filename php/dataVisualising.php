@@ -39,11 +39,9 @@
         }
     }
 
-    print_r ($columnData);
+    //print_r ($columnData); //prints everything in multi-dimensional array
 
-    echo $columnData[data_Oil_Pressure];
-
-
+    
     /*while ($row = $result->fetch_assoc()) {  //fetching rows for multiple column
         foreach ($selectedColumnArray as $column) {
             $columnData[$column][] = [
@@ -82,15 +80,17 @@
 <body>
     <script>
          // Encode $columnData as an indexed array before outputting
-        var rawData =<?php echo json_encode(array_values($columnData)); ?>;
-        var selectedColumn = "<?php echo $selectedColumnArray[0]; ?>";
+        var columnData =<?php echo json_encode($columnData); ?>;
+       
+        //Extracting all the column name and storing it in an array
+        var columns = Object.keys(columnData);
 
         // Extracting the values from the selected columns
-        var data_column = rawData.map(function(d) {
-            return d[selectedColumn];
+        var data = columns.map(function(columns) {
+            return columnData[columns];
         });
 
-        console.log(data_column);
+        console.log(data);
         var container = d3.select("body")
             .append("svg")
             .attr("height", 500)
