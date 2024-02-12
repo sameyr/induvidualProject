@@ -1,12 +1,19 @@
 <?php
 
     if((empty($_POST["startTimestamp"])) || (empty($_POST["endTimestamp"]))){
-        die("Error, please enter proper value in timestamp box.");
+        header("Location: ./dataSelectionPage.php?submit=emptytimestamp");
+        exit();
+    }  
+
+    if(empty($_POST["selectedColumn"])){
+        header("Location: ./dataSelectionPage.php?submit=emptyColumn");
+        exit();
     }    
-    
 
     if ((strtotime($_POST["endTimestamp"])) <  (strtotime($_POST["startTimestamp"]))){
-        die("Error, please try again.<br> End Time is greater than Start Time.");
+        header("Location: ./dataSelectionPage.php?submit=starttimegreater");
+        exit();
+        //die("Error, please try again.<br> End Time is greater than Start Time.");
     }
 
     $mysqli = require __DIR__ ."/database.php";
@@ -27,7 +34,7 @@
                         $mysqli -> real_escape_string($_POST["endTimestamp"]));
     
     
-    echo $sql . "<br>";                    
+    //echo $sql . "<br>";                    
     $result = $mysqli -> query($sql);
 
     // Initialize an array to hold the data for each selected column
@@ -38,19 +45,15 @@
             $columnData[$column][] = $row[$column];
         }
     }
-
-    //print_r ($columnData); //prints everything in multi-dimensional array
-
-    
+    //print_r ($columnData); //prints everything in multi-dimensional array    
     // prints the data for each selected column
-    foreach ($columnData as $column => $data) {
+    /*foreach ($columnData as $column => $data) {
         echo "<br>$column:<br>";
         foreach ($data as $value) {
             echo  "Value: " . $value . "<br>";
         }
         echo "<br>";
-    }
-
+    }*/
 
 ?>
 
@@ -58,6 +61,8 @@
 <html>
 <head>
     <script src="https://d3js.org/d3.v4.js"></script>
+    <link rel="stylesheet" href="dataSelectionPage.css">
+    <link rel="stylesheet" href="https://classless.de/classless.css">
 </head>
 <body>
     <script>
@@ -107,10 +112,38 @@
             .attr("transform", "translate(0,150)")
             .call(axis);
 
-        console.log(data);
-
-       
-                
+        console.log(data);              
     </script>
+
+<form action="export.php" method="POST">
+    <div id="list1">
+    <input type="hidden" id="selectedDownloadColumn" name="selectedDownloadColumn" value="">
+        <span class="anchor" >Select column to download</span>
+        <ul class="items">
+        <?php
+            foreach ($selectedColumnArray as $column) {
+                echo "<label><input type=\"checkbox\" name=\"selectedColumns[]\" value=\"$column\"> $column</label> <br>";
+            }
+        ?>
+        </ul>
+        <button type="submit" name="submit">Download</button>
+    </div>
+    <script>
+        var selectedColumns = [];
+        // adding checkmark according to user selection
+        var checkList = document.getElementById('list1');
+        checkList.getElementsByClassName('anchor')[0].onclick = function(evt) {
+            if (checkList.classList.contains('visible'))
+                checkList.classList.remove('visible');
+            else
+                checkList.classList.add('visible');
+                selectedColumns = Array.from(document.querySelectorAll('input[name="selectedColumns[]"]:checked'))
+                                            .map(function(checkbox) {
+                                                return checkbox.value;
+                                            });
+                document.getElementById("selectedDownloadColumn").value = selectedColumns.join(",");
+            }
+    </script>
+
 </body>
 </html>
