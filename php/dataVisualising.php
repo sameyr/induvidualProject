@@ -42,14 +42,6 @@
     //print_r ($columnData); //prints everything in multi-dimensional array
 
     
-    /*while ($row = $result->fetch_assoc()) {  //fetching rows for multiple column
-        foreach ($selectedColumnArray as $column) {
-            $columnData[$column][] = [
-                'value' => $row[$column],
-            ];
-        }
-    }*/
-    
     // prints the data for each selected column
     foreach ($columnData as $column => $data) {
         echo "<br>$column:<br>";
@@ -58,17 +50,7 @@
         }
         echo "<br>";
     }
-   
 
-   /*while($row = $result->fetch_assoc()) // fetching rows for only one column
-        { 
-            $column_data[] = $row;
-            echo "$selectedColumn: " . $row["$selectedColumn"] . "<br>";
-        } 
-    
-    /*foreach ($dataFuelMainfold as $dataFuelMainfold) {
-        echo $dataFuelMainfold['data_Fuel_manifold_Pressure'] . "<br>";
-    }*/
 
 ?>
 
@@ -89,8 +71,7 @@
         var data = columns.map(function(columns) {
             return columnData[columns];
         });
-
-        console.log(data);
+        
         var container = d3.select("body")
             .append("svg")
             .attr("height", 500)
@@ -99,29 +80,36 @@
             .attr("transform", "translate(100,100)");
 
         var xScale = d3.scaleLinear()
-                        .domain([0, data_column.length - 1])
+                        .domain([0, data[0].length - 1])
                         .range([0, 500]);
 
         var yScale = d3.scaleLinear()
-                        .domain([d3.min(data_column), d3.max(data_column)])
+                        .domain([d3.min(data.flat()), d3.max(data.flat())])
                         .range([100, 0]);
 
-        var scale = d3.scaleLinear().domain([0, data_column.length]).range([0, 500]);
-        var axis = d3.axisBottom(scale);
+        var colorScale = d3.scaleOrdinal(d3.schemeCategory10); // Color scale for different lines
 
-        var line = container.selectAll("line")
-            .data(data_column)
+        var line = d3.line()
+            .x(function(d, i) { return xScale(i); })
+            .y(function(d) { return yScale(d); });
+
+        container.selectAll(".line")
+            .data(data)
             .enter()
-            .append("line")
-            .attr("x1", function (d, i) { return xScale(i); })
-            .attr("y1", function (d) { return yScale(d); })
-            .attr("x2", function (d, i) { return xScale(i + 1); }) 
-            .attr("y2", function (d) { return yScale(d); })
-            .attr("stroke", "green");
+            .append("path")
+            .attr("class", "line")
+            .attr("d", line)
+            .style("stroke", function(d, i) { return colorScale(i); });
+
+        var axis = d3.axisBottom(xScale);
 
         container.append("g")
-                    .attr("transform","translate(0,150)")
-                    .call(axis);
+            .attr("transform", "translate(0,150)")
+            .call(axis);
+
+        console.log(data);
+
+       
                 
     </script>
 </body>

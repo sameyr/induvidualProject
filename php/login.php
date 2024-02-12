@@ -9,9 +9,10 @@
     </head>
     <body>
         <form action="dataSelectionPage.php" method="post">
-            <div class="login-box">
-                <h1>Login</h1>
     
+        <div class="login-box">   
+        <h1 class = "title">BIG DATA VISUALISATION</h1>     
+            <h2>Login</h2>
                 <div class="textbox">
                     <i class="fa fa-user" aria-hidden="true"></i>
                     <input type="text" placeholder="Username"

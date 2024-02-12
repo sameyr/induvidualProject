@@ -1,19 +1,35 @@
 <?php
+
     if(($_POST['username'] == "samir") && ($_POST['password'] == "shrestha") ){
         $mysqli = require __DIR__."/database.php";
+        $error_message  = '';
 
-        //Retriving Column name from database
-        $tableName ='sampleinputdata';
-        $query ="SHOW COLUMNS FROM $tableName";
-        $result = $mysqli->query($query);
+       /* if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+            
+            if((empty($_POST["startTimestamp"])) || (empty($_POST["endTimestamp"]))){
+                die("Error, please enter proper value in timestamp box.");
+            }    
+            
 
-
-        //creating empty array and populating array using result 
-        $coulmns = [];
-        while ($row = $result -> fetch_assoc()){
-            $columns[] = $row['Field']; 
+            if ((strtotime($_POST["endTimestamp"])) <  (strtotime($_POST["startTimestamp"]))){
+                die("Error, please try again.<br> End Time is greater than Start Time.");
+            }
         }
-    }
+        if (empty($error_message)){*/
+            
+            
+                //Retriving Column name from database
+                $tableName ='sampleinputdata';
+                $query ="SHOW COLUMNS FROM $tableName";
+                $result = $mysqli->query($query);
+
+
+                //creating empty array and populating array using result 
+                $coulmns = [];
+                while ($row = $result -> fetch_assoc()){
+                    $columns[] = $row['Field']; 
+                }
+            }    
     else{
         die("wrong credential");
     }
@@ -26,60 +42,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <link rel="stylesheet" href="dataSelectionPage.css">
     <link rel="stylesheet" href="https://classless.de/classless.css">
-    <style>
-        .dropdown-check-list {
-        display: inline-block;
-        }
-
-        .dropdown-check-list .anchor {
-        position: relative;
-        cursor: pointer;
-        display: inline-block;
-        padding: 5px 50px 5px 10px;
-        border: 1px solid #ccc;
-        }
-
-        .dropdown-check-list .anchor:after {
-        position: absolute;
-        content: "";
-        border-left: 2px solid black;
-        border-top: 2px solid black;
-        padding: 5px;
-        right: 10px;
-        top: 20%;
-        -moz-transform: rotate(-135deg);
-        -ms-transform: rotate(-135deg);
-        -o-transform: rotate(-135deg);
-        -webkit-transform: rotate(-135deg);
-        transform: rotate(-135deg);
-        }
-
-        .dropdown-check-list .anchor:active:after {
-        right: 8px;
-        top: 21%;
-        }
-
-        .dropdown-check-list ul.items {
-        padding: 2px;
-        display: none;
-        margin: 0;
-        border: 1px solid #ccc;
-        border-top: none;
-        }
-
-        .dropdown-check-list ul.items li {
-        list-style: none;
-        }
-
-        .dropdown-check-list.visible .anchor {
-        color: #0094ff;
-        }
-
-        .dropdown-check-list.visible .items {
-        display: block;
-        }
-    </style>
+   
 </head>
 <body>
 
@@ -110,7 +75,7 @@
         </div>
 
         <div>
-            <button type="submit">Submit</button>
+            <button type="submit" name="submit">Submit</button>
         </div>
     </form>
 
