@@ -24,7 +24,6 @@
         $selectedColumnString = isset($_POST["selectedColumn"]) ? $_POST["selectedColumn"] : '';
         $selectedColumnArray = explode(",", $selectedColumnString);
         //$escapedColumns = array_map([$mysqli, 'real_escape_string'], $selectedColumnArray);
-
         $sql = sprintf("SELECT %s FROM sampleinputdata
                             WHERE STR_TO_DATE(timestamp, '%%m/%%d/%%Y %%H:%%i') 
                             BETWEEN STR_TO_DATE('%s', '%%m/%%d/%%Y %%H:%%i')
@@ -87,8 +86,7 @@
             // Extracting the values from the selected columns
             var data = columns.map(function(columns) {
                 return columnData[columns];
-            });
-            
+            });   
 
             var containerDiv=d3.select("body")
                     .append("div")
@@ -139,25 +137,27 @@
 
 
         <form action="export.php" method="POST">
-            <div class="download-list" id="list1">
+            <div class="download-list">
                 <input type="hidden" id="selectedDownloadColumn" name="selectedDownloadColumn" value="">
-                    <span class="anchor" >Select column to download</span>
-                    <ul class="items">
-                        <?php
-                            foreach ($selectedColumnArray as $column) {
-                                echo "<label><input type=\"checkbox\" name=\"selectedColumns[]\" value=\"$column\"> $column</label> <br>";
-                            }
-                        ?>
-                    </ul>
+                    <div id="list1" tabindex="100">
+                        <span class="anchor" >Select column to download</span>
+                        <ul class="items">
+                            <?php
+                                foreach ($selectedColumnArray as $column) {
+                                    echo "<label><input type=\"checkbox\" name=\"selectedColumns[]\" value=\"$column\"> $column</label> <br>";
+                                }
+                            ?>
+                        </ul>
+                    </div>
                 <button class="download-btn" type="submit" name="submit">Download</button>
             </div>
         </form>
         
         <script>
             var selectedColumns = [];
-            // adding checkmark according to user selection
-            var checkList = document.getElementById('list1');
-            checkList.getElementsByClassName('anchor')[0].onclick = function(evt) {
+           // adding checkmark according to user selection
+           var checkList = document.getElementById('list1');
+            checkList.getElementsByClassName('items')[0].onclick = function(evt) {
                 if (checkList.classList.contains('visible'))
                     checkList.classList.remove('visible');
                 else
@@ -166,6 +166,7 @@
                                                 .map(function(checkbox) {
                                                     return checkbox.value;
                                                 });
+                    console.log(selectedColumns);
                     document.getElementById("selectedDownloadColumn").value = selectedColumns.join(",");
                 }
         </script>
