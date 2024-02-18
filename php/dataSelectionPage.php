@@ -43,10 +43,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Home</title>
         <link rel="stylesheet" href="dataSelectionPage.css">
-        <link rel="stylesheet" href="https://classless.de/classless.css">
+        <!--<link rel="stylesheet" href="https://classless.de/classless.css">-->
     
     </head>
     <body>
+        <nav class="navbar">
+            <div class="navbar-title">
+                <a class="navbar-brand"><b>DATA SELECTION PAGE</b></a>
+            </div>
+
+            <div class="signoutBtn-div">
+                <button class="signout-btn"><b>Sign Out</b></button>
+            </div>
+        </nav>
 
         <form action="dataVisualising.php" method="POST">
         <div class="input-form">
@@ -64,19 +73,24 @@
                 </ul>
             </div>
 
-            <div>
-                <!-- Input for start timestamp -->
-                <label for="startTimestamp">Start Time:</label>
-                <input type="text" id="startTimestamp" name="startTimestamp" required>
-
-                <!-- Input for end timestamp -->
-                <label for="endTimestamp">End Time:</label>
-                <input type="text" id="endTimestamp" name="endTimestamp" required>
+            <div class="input-time">
+                <div class="startTime">
+                    <!-- Input for start timestamp -->
+                    <label for="startTimestamp">Start Time:</label>
+                    <input type="text" id="startTimestamp" name="startTimestamp" class="startTimeBox" required>
+                </div>
+                
+                <div class="endTime">
+                    <!-- Input for end timestamp -->
+                    <label for="endTimestamp">End Time:</label>
+                    <input type="text" id="endTimestamp" name="endTimestamp" class="endTimeBox" required>
+                </div>
             </div>
 
-            <div>
-                <button type="submit" name="submit">Submit</button>
+            <div class="btn-div">
+                <button class = "button" type="submit" name="submit">Submit</button>
             </div>
+
             <?php 
             $fullUrl="http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
                 if(strpos($fullUrl,"submit=starttimegreater") == true){

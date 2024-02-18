@@ -9,7 +9,6 @@
     </head>
     <body>
         <form action="dataSelectionPage.php" method="post">
-    
         <div class="login-box">   
         <h1 class = "title">BIG DATA VISUALISATION</h1>     
             <h2>Login</h2>
