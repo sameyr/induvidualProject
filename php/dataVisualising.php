@@ -104,7 +104,8 @@
             .append("path")
             .attr("class", "line")
             .attr("d", line)
-            .style("stroke", function(d, i) { return colorScale(i); });
+            .style("stroke", function(d, i) { return colorScale(i); })
+            .style("fill", "none");
 
         var axis = d3.axisBottom(xScale);
 
