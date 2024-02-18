@@ -58,48 +58,48 @@
         </nav>
 
         <form action="dataVisualising.php" method="POST">
-        <div class="input-form">
-            <input type="hidden" id="selectedColumnInput" name="selectedColumn" value="">
+            <div class="input-form">
+                <input type="hidden" id="selectedColumnInput" name="selectedColumn" value="">
 
-            <!-- Dropdown menu with checkboxes to select multiple columns -->
-            <div id="list1" class="dropdown-check-list" tabindex="100">
-                <span class="anchor" >Select Column</span>
-                <ul class="items">
-                        <?php
-                            foreach ($columns as $column) {
-                                echo "<label><input type=\"checkbox\" name=\"selectedColumns[]\" value=\"$column\"> $column</label> <br>";
-                            }
-                        ?>
-                </ul>
-            </div>
-
-            <div class="input-time">
-                <div class="startTime">
-                    <!-- Input for start timestamp -->
-                    <label for="startTimestamp">Start Time:</label>
-                    <input type="text" id="startTimestamp" name="startTimestamp" class="startTimeBox" required>
+                <!-- Dropdown menu with checkboxes to select multiple columns -->
+                <div id="list1" class="dropdown-check-list" tabindex="100">
+                    <span class="anchor" >Select Column</span>
+                    <ul class="items">
+                            <?php
+                                foreach ($columns as $column) {
+                                    echo "<label><input type=\"checkbox\" name=\"selectedColumns[]\" value=\"$column\"> $column</label> <br>";
+                                }
+                            ?>
+                    </ul>
                 </div>
-                
-                <div class="endTime">
-                    <!-- Input for end timestamp -->
-                    <label for="endTimestamp">End Time:</label>
-                    <input type="text" id="endTimestamp" name="endTimestamp" class="endTimeBox" required>
+
+                <div class="input-time">
+                    <div class="startTime">
+                        <!-- Input for start timestamp -->
+                        <label for="startTimestamp">Start Time:</label>
+                        <input type="text" id="startTimestamp" name="startTimestamp" class="startTimeBox" required>
+                    </div>
+                    
+                    <div class="endTime">
+                        <!-- Input for end timestamp -->
+                        <label for="endTimestamp">End Time:</label>
+                        <input type="text" id="endTimestamp" name="endTimestamp" class="endTimeBox" required>
+                    </div>
                 </div>
-            </div>
 
-            <div class="btn-div">
-                <button class = "button" type="submit" name="submit">Submit</button>
-            </div>
+                <div class="btn-div">
+                    <button class = "button" type="submit" name="submit">Submit</button>
+                </div>
 
-            <?php 
-            $fullUrl="http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-                if(strpos($fullUrl,"submit=starttimegreater") == true){
-                    echo "<p class='error'> Error, please try again.<br> End Time is greater than Start Time. <p>";
-                }
-                else if (strpos($fullUrl,"submit=emptyColumn") == true){
-                    echo "<p class='error'> Error, please try again.<br> Select appropriate column before submittng. <p>";}
-            ?>
-        </div>
+                <?php 
+                $fullUrl="http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+                    if(strpos($fullUrl,"submit=starttimegreater") == true){
+                        echo "<p class='error'> Error, please try again.<br> End Time is greater than Start Time. <p>";
+                    }
+                    else if (strpos($fullUrl,"submit=emptyColumn") == true){
+                        echo "<p class='error'> Error, please try again.<br> Select appropriate column before submittng. <p>";}
+                ?>
+            </div>
         </form>
 
         <script>
