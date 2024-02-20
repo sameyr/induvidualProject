@@ -61,7 +61,6 @@
     <head>
         <script src="https://d3js.org/d3.v4.js"></script>
         <link rel="stylesheet" href="dataVisualisation.css">
-        <!--<link rel="stylesheet" href="https://classless.de/classless.css">-->
     </head>
     <body>
 
@@ -71,7 +70,7 @@
                 </div>
 
                 <div class="signoutBtn-div">
-                    <button class="signout-btn"><b>Sign Out</b></button>
+                    <button class="signout-btn" onclick="document.location='login.php'"><b>Sign Out</b></button>
                 </div>
         </nav>
 

@@ -53,14 +53,13 @@
             </div>
 
             <div class="signoutBtn-div">
-                <button class="signout-btn"><b>Sign Out</b></button>
+                <button class="signout-btn" onclick="document.location ='login.php'"><b>Sign Out</b></button>
             </div>
         </nav>
 
         <form action="dataVisualising.php" method="POST">
             <div class="input-form">
                 <input type="hidden" id="selectedColumnInput" name="selectedColumn" value="">
-
                 <!-- Dropdown menu with checkboxes to select multiple columns -->
                 <div id="list1" class="dropdown-check-list" tabindex="100">
                     <span class="anchor" >Select Column</span>
