@@ -1,0 +1,62 @@
+body{
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    background-color: rgb(247, 247, 247);
+}
+
+.header{
+    display: flex;
+    border: none;
+    border-radius: 18px;
+    padding: 2px 20px 2px;
+    background-color: rgb(223, 225, 238);
+    box-shadow: 5px 5px 5px rgba(0,0,0, 0.3);
+}
+
+.welcome-text{
+    font-size: medium;
+    font-weight: bold ;
+}
+
+.signout-btn{
+    position: absolute;
+    top:17px;
+    right:15px;
+    background-color: rgb(255, 255, 255);
+    color: #191970;
+    border:1px;
+    border-style: solid;
+    border-color:rgb(6,95,212);
+    border-radius: 4px;
+    padding-left: 12px;
+    padding-right: 12px ;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    cursor: pointer;
+    transition: 0.5s;
+    box-shadow: 5px 5px 5px rgba(0,0,0, 0.3);
+}
+
+.signout-btn:active{
+    box-shadow: none;
+    top: 10px;
+    margin-bottom: 0;
+}
+
+.signout-btn:hover{
+    opacity: 1;
+    background-color: rgb(223, 225, 238);
+}
+
+.sidebar{
+    background-color: rgb(223, 225, 238);
+    position: fixed;
+    z-index: 1000;
+    bottom: 0px;;
+    left:10px;
+    top:72px;
+    width: 100px;
+    border-radius: 18px;
+    padding-top:8px ;
+    padding-left: 6px;
+    box-shadow: 5px 5px 5px rgba(0,0,0, 0.3);
+}
