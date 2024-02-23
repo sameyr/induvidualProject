@@ -1,7 +1,19 @@
     <?php
 
+        $mysqli = require __DIR__ ."/database.php";
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        $sql="SELECT * from userAuthentication where usernames = '$username' and passwords= '$password'"; 
+        $result = $mysqli -> query($sql);
+        $check = mysqli_fetch_array($result);
+
+        if($check == NuLL){
+            header("Location: ./login.php?submit=invalidcredentials");
+            exit();
+        }
+        else{
         //if(($_POST['username'] == "samir") && ($_POST['password'] == "shrestha") ){
-            $mysqli = require __DIR__."/database.php";
+           // $mysqli = require __DIR__."/database.php";
             $error_message  = '';
 
         /* if ($_SERVER['REQUEST_METHOD'] === 'POST'){
@@ -33,7 +45,7 @@
         //else{
         //    die("wrong credential");
         //}
-
+        }
     ?>
 
     <!DOCTYPE html>

@@ -26,6 +26,13 @@
     
                 <input class="button" type="submit"
                         name="login" value="Sign In">
+
+                <?php 
+                    $fullUrl="http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+                    if(strpos($fullUrl,"submit=invalidcredentials") == true){
+                        echo "<p class='error'> Error, please try again.<br> Invalid Credentials. <p>";
+                    }
+                ?>
             </div>
         </form>
 
