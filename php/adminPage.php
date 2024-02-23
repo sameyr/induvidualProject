@@ -16,5 +16,26 @@
         <div class="sidebar">
             <p>sidebar</p>
         </div>
+
+        <div class="container">
+            <div class="information-container">
+                <div class="icon-row">
+                    <img class = "info-icon" src ="/databaseIcon.png">
+                    <div class ="info-title">Database</div>
+                </div>
+            </div>
+            <div class="information-container">
+                <div class="icon-row">
+                    <img class = "info-icon" src ="/dataVisualisationIcon.png">
+                    <div class ="info-title">Data Visualisation</div>
+                </div>
+            </div>
+            <div class="information-container">
+                <div class="icon-row">
+                    <img class = "info-icon" src ="/settingIcon.png">
+                    <div class ="info-title">Settings</div>
+                </div>
+            </div>
+        </div>
     <body>
 </html>
