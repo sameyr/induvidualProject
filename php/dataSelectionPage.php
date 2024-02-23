@@ -11,11 +11,13 @@
             header("Location: ./login.php?submit=invalidcredentials");
             exit();
         }
+        elseif($check[2] == "Teacher"){
+            header("Location: ./adminPage.php");
+        }
         else{
         //if(($_POST['username'] == "samir") && ($_POST['password'] == "shrestha") ){
            // $mysqli = require __DIR__."/database.php";
             $error_message  = '';
-
         /* if ($_SERVER['REQUEST_METHOD'] === 'POST'){
                 
                 if((empty($_POST["startTimestamp"])) || (empty($_POST["endTimestamp"]))){
