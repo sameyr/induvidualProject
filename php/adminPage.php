@@ -20,7 +20,7 @@
         <div class="container">
             <div class="information-container" id ="database">
                 <div class="icon-row">
-                    <img class = "info-icon" src ="/databaseIcon.png">
+                    <img class = "info-icon" src ="/icons/databaseIcon.png">
                 </div>
                 <div class ="infoTitleContainer">
                    <p class= "info-title"> User Database</p>
@@ -29,7 +29,7 @@
 
             <div class="information-container" id ="dataVisual">
                 <div class="icon-row" >
-                    <img class = "info-icon"  src ="/dataVisualisationIcon.png">
+                    <img class = "info-icon"  src ="/icons/dataVisualisationIcon.png">
                 </div>
                 <div class ="infoTitleContainer">
                    <p class= "info-title"> Data Visualisation</p>
@@ -38,7 +38,7 @@
 
             <div class="information-container" id="settings">
                 <div class="icon-row">
-                    <img class = "info-icon"  src ="/settingIcon.png">
+                    <img class = "info-icon"  src ="/icons/settingIcon.png">
                 </div>
                 <div class ="infoTitleContainer">
                    <p class= "info-title"> Settings</p>
@@ -47,7 +47,7 @@
 
             <div class="information-container" id="register">
                 <div class="icon-row">
-                    <img class = "info-icon" src ="/registration.png">
+                    <img class = "info-icon" src ="/icons/registration.png">
                 </div>
                 <div class ="infoTitleContainer">
                    <p class= "info-title"> Registration</p>
