@@ -67,7 +67,7 @@
             </div>
 
             <div class="signoutBtn-div">
-                <button class="signout-btn" onclick="document.location ='login.php'"><b>Sign Out</b></button>
+                <button class="signout-btn" onclick="signout()"><b>Sign Out</b></button>
             </div>
         </nav>
 
@@ -133,6 +133,10 @@
                     console.log(selectedColumns);
                     document.getElementById("selectedColumnInput").value = selectedColumns.join(",");
                 }
+            
+            function signout(){
+            return location.replace("./login.php");
+            }
         </script>
     </body>
     </html>

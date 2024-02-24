@@ -122,12 +122,6 @@ display: block;
     height: 200px;
 }
 
-.signout-btn{
-    position:absolute;
-    top: 2px;
-    right: 0px ;
-}
-
 .error{
 color: red;
 }
@@ -160,6 +154,9 @@ color: red;
 }
 
 .signout-btn{
+    position:absolute;
+    top: 2px;
+    right: 0px ;
     background-color: rgb(255, 255, 255);
     color: #191970;
     border:1px;
@@ -184,7 +181,6 @@ color: red;
 .signout-btn:hover{
     opacity: 1;
 }
-
 
 .btn-div{
     float:right;

@@ -10,7 +10,7 @@
     <body>
         <div class="header">
             <p class="welcome-text">WELCOME ADMIN!</p>
-            <button class="signout-btn" onclick="document.location ='login.php'"><b>Sign Out</b></button>
+            <button class="signout-btn" onclick="signout()"><b>Sign Out</b></button>
         </div>
 
         <div class="sidebar">
@@ -57,16 +57,21 @@
     <body>
 
     <script>
+        function signout(){
+           return location.replace("./login.php");
+        }
+
         const database_div = document.getElementById("database");
 
         database_div.addEventListener('click', function() {
+            location.replace("./userDatabase.php");
             console.log('database-div was clicked!');
         });
 
         const dataVisual_div = document.getElementById("dataVisual");
 
         dataVisual_div.addEventListener('click', function() {
-            location.replace("./login.php");
+            location.replace("./dataVisualising.php");
             console.log('datavisual-div was clicked!');
         });
 
@@ -78,6 +83,7 @@
         const register_div = document.getElementById("register");
 
         register_div.addEventListener('click', function() {
+            location.replace("./registrationPage.php");
             console.log('register-div was clicked!');
         });
     </script>

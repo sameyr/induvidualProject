@@ -17,7 +17,6 @@
         }
 
         $mysqli = require __DIR__ ."/database.php";
-
         
         $selectedColumn =$mysqli -> real_escape_string($_POST["selectedColumn"]);
         
@@ -70,12 +69,17 @@
                 </div>
 
                 <div class="signoutBtn-div">
-                    <button class="signout-btn" onclick="document.location='login.php'"><b>Sign Out</b></button>
+                    <button class="signout-btn" onclick="signout()"><b>Sign Out</b></button>
                 </div>
         </nav>
 
      
         <script>
+
+            function signout(){
+                return location.replace("./login.php");
+            }
+
             // Encode $columnData as an indexed array before outputting
             var columnData =<?php echo json_encode($columnData); ?>;
         
@@ -133,7 +137,6 @@
                 .call(axis);
             console.log(data);              
         </script>
-
 
         <form action="export.php" method="POST">
             <div class="download-list">

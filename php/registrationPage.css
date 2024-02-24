@@ -1,0 +1,75 @@
+body{
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    background-color: rgb(247, 247, 247);
+}
+
+.navBar{
+    background-color: rgb(223, 225, 238);
+    position: relative;
+    margin-left: 10px;
+    margin-right:10px;
+    padding: 10px 14px 0px;
+    height: 55px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+}
+
+.title{
+    margin-left: 10px ;
+    top: 10px; 
+    font-size: large;
+    font-weight: bold ;
+}
+
+.homebtn-div{
+    height: 0px;
+}
+
+.home-btn,
+.signout-btn,
+.password-btn{
+    background-color: rgb(255, 255, 255);
+    color: #191970;
+    border:1px;
+    top:15px;
+    border-style: solid;
+    border-color:rgb(6,95,212);
+    border-radius: 4px;
+    padding-left: 12px;
+    padding-right: 12px ;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    cursor: pointer;
+    transition: 0.5s;
+    box-shadow: 5px 5px 5px rgba(0,0,0, 0.3);
+}
+
+.home-btn:active,
+.signout-btn:active,
+.password-btn:active{
+    box-shadow: none;
+    top: 13px;
+    margin-bottom: 0;
+}
+
+.home-btn:hover,
+.signout-btn:hover,
+.password-btn:hover{
+    opacity: 1;
+}
+
+.signout-btn{
+    position: absolute;
+    right: 16px;
+}
+
+.password-btn{
+    position: absolute;
+    right: 108px;
+}
+
+.home-btn{
+    position: absolute;
+    right: 260px; 
+}
