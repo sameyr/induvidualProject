@@ -57,7 +57,7 @@
             <?php
             }
             ?>
-            <button class = "addUser"><b>Add User</b></button>
+            <button class = "addUser" onclick="location = 'registrationPage.php'"><b>Add User</b></button>
         </div>
     </body>
     <script>
