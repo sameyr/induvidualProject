@@ -20,6 +20,9 @@
         
         $selectedColumn =$mysqli -> real_escape_string($_POST["selectedColumn"]);
         
+        $startTime= $_POST["startTimestamp"];
+        $endTime=$_POST["endTimestamp"];
+
         $selectedColumnString = isset($_POST["selectedColumn"]) ? $_POST["selectedColumn"] : '';
         $selectedColumnArray = explode(",", $selectedColumnString);
         //$escapedColumns = array_map([$mysqli, 'real_escape_string'], $selectedColumnArray);
@@ -140,6 +143,8 @@
 
         <form action="export.php" method="POST">
             <div class="download-list">
+                <input type="hidden" id="startTimeStamp" name ="startTimeStamp" value="<?php echo $startTime?>" >
+                <input type="hidden" id="endTimeStamp" name="endTimeStamp" value= "<?php echo $endTime?>" >
                 <input type="hidden" id="selectedDownloadColumn" name="selectedDownloadColumn" value="">
                     <div id="list1" tabindex="100">
                         <span class="anchor" >Select column to download</span>
