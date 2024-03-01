@@ -1,13 +1,13 @@
     <?php
 
         $mysqli = require __DIR__ ."/database.php";
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-        $sql="SELECT * from userAuthentication where usernames = '$username' and passwords= '$password'"; 
-        $result = $mysqli -> query($sql);
-        $check = mysqli_fetch_array($result);
+        //$username = $_POST['username'];
+        //$password = $_POST['password'];
+        //$sql="SELECT * from userAuthentication where usernames = '$username' and passwords= '$password'"; 
+        //$result = $mysqli -> query($sql);
+        //$check = mysqli_fetch_array($result);
 
-        if($check == NuLL){
+        /*if($check == NuLL){
             header("Location: ./login.php?submit=invalidcredentials");
             exit();
         }
@@ -47,7 +47,7 @@
         //else{
         //    die("wrong credential");
         //}
-        }
+        //}
     ?>
 
     <!DOCTYPE html>
@@ -75,8 +75,8 @@
             <div class="input-form">
                 <input type="hidden" id="selectedColumnInput" name="selectedColumn" value="">
                 <!-- Dropdown menu with checkboxes to select multiple columns -->
-                <div id="list1" class="dropdown-check-list" tabindex="100">
-                    <span class="anchor" >Select Column</span>
+                <div id="list1" class="dropdown-check-list" tabindex="100" >
+                    <span class="anchor"required >Select Column</span>
                     <ul class="items">
                             <?php
                                 foreach ($columns as $column) {

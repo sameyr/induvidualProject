@@ -71,7 +71,7 @@
         const dataVisual_div = document.getElementById("dataVisual");
 
         dataVisual_div.addEventListener('click', function() {
-            location.replace("./dataVisualising.php");
+            location.replace("./dataSelectionPage.php");
             console.log('datavisual-div was clicked!');
         });
 

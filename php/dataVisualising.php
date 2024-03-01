@@ -94,6 +94,7 @@
                 return columnData[columns];
             });   
 
+            //adding css to the graph
             var containerDiv=d3.select("body")
                     .append("div")
                     .style("position","relative")
@@ -104,11 +105,12 @@
                     .style("border-radius","25px")
                     .style("box-shadow"," 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1)"); 
 
+            //makin a svg container for the graph 
             var container = containerDiv.append("svg")
                 .attr("height", 500)
                 .attr("width", 700)
                 .append("g")
-                .attr("transform", "translate(100,100)");
+                .attr("transform", "translate(150,100)");
 
             var xScale = d3.scaleLinear()
                             .domain([0, data[0].length - 1])
@@ -116,7 +118,7 @@
 
             var yScale = d3.scaleLinear()
                             .domain([d3.min(data.flat()), d3.max(data.flat())])
-                            .range([100, 0]);
+                            .range([200, 10]);
 
             var colorScale = d3.scaleOrdinal(d3.schemeCategory10); // Color scale for different lines
 
@@ -133,12 +135,14 @@
                 .style("stroke", function(d, i) { return colorScale(i); })
                 .style("fill", "none");
 
-            var axis = d3.axisBottom(xScale);
-
+            // adding x-asix
             container.append("g")
-                .attr("transform", "translate(0,150)")
-                .call(axis);
-            console.log(data);              
+                .attr("transform", "translate(0,200)")
+                .call(d3.axisBottom(xScale));
+                 
+            //adding y-axis
+            container.append("g")
+                .call(d3.axisLeft(yScale));
         </script>
 
         <form action="export.php" method="POST">
