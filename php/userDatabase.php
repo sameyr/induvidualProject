@@ -37,6 +37,7 @@
                 <th>Username</th>
                 <th>Email</th>
                 <th>Role</th>
+                <th>Select</th>
             </tr>
 
             <?php
@@ -52,11 +53,14 @@
                 <td><?php echo $row['usernames'];?></td>
                 <td><?php echo $row['Email'];?></td>
                 <td><?php echo $row['Roles'];?></td>
+                <td><input class="check" type="checkbox"></td>
             </tr>
 
             <?php
             }
             ?>
+            <button class ="deleteUser" id ="deleteUser"><b>Delete</b></button>
+            <button class ="editUser" onclick="location='editPage.php'"><b>Edit</b></button>
             <button class = "addUser" onclick="location = 'registrationPage.php'"><b>Add User</b></button>
         </div>
     </body>
@@ -64,5 +68,51 @@
         function signout(){
             return location.replace("./login.php");
         }
+        const deleteButton = document.getElementById("deleteUser");
+        deleteButton.addEventListener("click",()=>{
+            const checkbox = document.querySelectorAll("input[type = 'checkbox']:checked");
+            if (checkbox.length > 0){
+                const confirmDelete=confirm("Are you sure, you want to delete the user?");
+                if (confirmDelete){
+                    const selectedRows = Array.from(checkbox).map(checkbox => {
+                    const row = checkbox.closest("tr");
+                    const idCell = row.querySelector("td:first-child");
+                    return idCell.textContent.trim();
+                    });
+
+                    fetch(window.location.href, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: 'selectedRows=' + JSON.stringify(selectedRows),
+                    })
+                    .then(response => response.text())
+                    .then(data => {
+                        // Handle the response from the PHP script if needed
+                        console.log(data);
+                        // Reload the page or update UI as necessary
+                        location.reload();
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+                }
+            }
+            else{
+                alert("No Rows Selected...");
+            }
+        })
     </script>
+    <?php 
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['selectedRows'])) {
+            $selectedRows = json_decode($_POST['selectedRows'], true);
+        
+            foreach ($selectedRows as $rowId) {
+                $sql = sprintf("DELETE FROM userauthentication WHERE ID = %s", $mysqli->real_escape_string($rowId));
+                $result = $mysqli->query($sql);
+            }
+        echo 'Row deleted sucessfully';
+        }
+    ?>
 </html>

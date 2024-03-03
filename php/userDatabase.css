@@ -23,7 +23,9 @@ body{
 }
 
 .table-div{
+    display: flex;
     position: relative;
+    justify-content: center;
     background-color: rgb(223, 225, 238);
     margin:20px 15px;
     padding: 20px 20px;
@@ -84,8 +86,7 @@ body{
 }
 
 table{
-    position: relative;
-    margin: auto;
+    display: flex;
     margin-bottom: 20px;
 }
 
@@ -93,16 +94,26 @@ table, th, td {
     border: 1px solid black;
   }
 
+.check{
+    width: 30px;
+    height: 30px;
+    border-radius: 200%;
+    background-color: #d6e4ec;
+    border: 1px solid #000;
+    display: block;
+    font-size: 140%;
+    font-weight: 900;
+    content: "";
+    color: green;
+}
 
-  .addUser{
+  .addUser,
+  .editUser,
+  .deleteUser{
     position: absolute;
-    right: 6px;
-    bottom: 6px;
     background-color: rgb(255, 255, 255);
-    color:rgb(6,95,212);
     border:1px;
     border-style: solid;
-    border-color:rgb(6,95,212);
     border-radius: 4px;
     padding-left: 15px;
     padding-right: 15px;
@@ -114,11 +125,41 @@ table, th, td {
     transition: background-color 0.2s , color 0.2s ;
   }
 
-  .addUser:hover{
+  .addUser{
+    color:rgb(6,95,212);
+    border-color:rgb(6,95,212);
+    right: 6px;
+    bottom: 6px;
+  }
+
+  .editUser{
+    color:rgb(6,95,212);
+    border-color:rgb(6,95,212);
+    right: 104px;
+    bottom: 6px;
+  }
+
+  .deleteUser{
+    color:rgb(255,0,0);
+    border-color:rgb(255,0,0);
+    right: 170px;
+    bottom: 6px;
+  }
+
+  .addUser:hover,
+  .editUser:hover{
     background-color:rgb(6,95,212);
     color: white;
   }
 
-  .addUser:active{
+  .deleteUser:hover{
+    background-color:rgb(255,0,0);
+    color: white;
+  }
+
+  .addUser:active,
+  .editUser:active,
+  .deleteUser:active{
     opacity: 0.7;    
   }
+

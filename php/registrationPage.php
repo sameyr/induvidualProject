@@ -94,7 +94,7 @@
                 else{
                     $sql="insert into userauthentication(usernames,passwords,Roles,Email,First_Name,Last_Name) values ('$username','$password','$userType','$email','$firstname','$lastname')";
                     $rs =$mysqli -> query($sql);
-                    echo'<script type="text/javascript"> alert("New Admin added!") </script>';
+                    echo'<script type="text/javascript"> alert("New User added!") </script>';
                 }
             }
         }
