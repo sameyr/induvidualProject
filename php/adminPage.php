@@ -14,7 +14,11 @@
         </div>
 
         <div class="sidebar">
-            <p>sidebar</p>
+            <p>DASHBOARD</p>
+            <div class="div-dashIcon">
+                <img class ="dashboard-icon" id="git" src="/icons/gitIcon.png">
+                <img class ="dashboard-icon" id="linkedin" src="/icons/linkedInIcon.png">
+            </div>
         </div>
 
         <div class="container">
@@ -60,6 +64,17 @@
         function signout(){
            return location.replace("./login.php");
         }
+
+        const git = document.getElementById("git");
+        git.addEventListener('click',()=>{
+           window.location.href='https://github.com/sameyr'
+        })
+
+        const linkedin = document.getElementById("linkedin");
+        linkedin.addEventListener('click',()=>{
+           window.location.href='https://www.linkedin.com/in/samir-shrestha-7a65031bb/'
+        })
+
 
         const database_div = document.getElementById("database");
 

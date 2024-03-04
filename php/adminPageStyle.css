@@ -82,6 +82,26 @@ body{
     padding-bottom: 20px;
 }
 
+.div-dashIcon{
+    position: absolute;
+    background-color: none;
+    bottom: 30px;
+    margin-right: 10px ;
+}
+
+.dashboard-icon{
+    display:block;
+    width: 40%;
+    margin: auto;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.git-name {
+    font-size:small;
+    margin: auto;    
+}
+
 .icon-row{
     position: relative;
     cursor: pointer;

@@ -87,7 +87,6 @@
             }
             else{
                 alert("No Rows Selected...");
-                location.replace(userDatabase.php);
             }
         })  
 
