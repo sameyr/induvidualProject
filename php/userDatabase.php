@@ -60,7 +60,11 @@
             }
             ?>
             <button class ="deleteUser" id ="deleteUser"><b>Delete</b></button>
-            <button class ="editUser" onclick="location='editPage.php'"><b>Edit</b></button>
+
+            <form action="./editUser.php" method="post">
+                <input type="hidden"  id= "userID" name="userID" value="">
+                <button type="submit" name= "submit" class ="editUser" id="editUser"><b>Edit</b></button>
+            </form>
             <button class = "addUser" onclick="location = 'registrationPage.php'"><b>Add User</b></button>
         </div>
     </body>
@@ -68,6 +72,26 @@
         function signout(){
             return location.replace("./login.php");
         }
+        
+        //Edit user info JS logic
+        const editButton = document.getElementById("editUser");
+        editButton.addEventListener("click",()=>{
+            const editCheckbox = document.querySelectorAll("input[type = 'checkbox']:checked");
+            if (editCheckbox.length > 0 ){
+                    const selectedRows = Array.from(editCheckbox).map(editCheckbox => {
+                    const row = editCheckbox.closest("tr");
+                    const idCell = row.querySelector("td:first-child");
+                    return (idCell.textContent.trim());
+                }) 
+                document.getElementById("userID").value = selectedRows; 
+            }
+            else{
+                alert("No Rows Selected...");
+                location.replace(userDatabase.php);
+            }
+        })  
+
+         //deleting user JS logic
         const deleteButton = document.getElementById("deleteUser");
         deleteButton.addEventListener("click",()=>{
             const checkbox = document.querySelectorAll("input[type = 'checkbox']:checked");
@@ -89,9 +113,9 @@
                     })
                     .then(response => response.text())
                     .then(data => {
-                        // Handle the response from the PHP script if needed
+                        // Handles the response from the PHP 
                         console.log(data);
-                        // Reload the page or update UI as necessary
+                        // Reload the page
                         location.reload();
                     })
                     .catch(error => {
@@ -105,6 +129,7 @@
         })
     </script>
     <?php 
+         //deleting user PHP logic
         if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['selectedRows'])) {
             $selectedRows = json_decode($_POST['selectedRows'], true);
         

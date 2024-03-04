@@ -38,11 +38,13 @@ top: 21%;
 }
 
 .dropdown-check-list ul.items {
-padding: 2px;
-display: none;
-margin: 0;
-border: 1px solid #ccc;
-border-top: none;
+    padding: 2px;
+    display: none;
+    margin: 0;
+    border: 1px solid #ccc;
+    border-top: none;
+    max-height: 250px; /* Set your desired height */
+    overflow-y: auto; /* Add scrollbar when content exceeds max height */
 }
 
 .dropdown-check-list ul.items li {

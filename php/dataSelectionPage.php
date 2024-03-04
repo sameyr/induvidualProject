@@ -14,24 +14,7 @@
         elseif($check[2] == "Teacher"){
             header("Location: ./adminPage.php");
         }
-        else{
-        //if(($_POST['username'] == "samir") && ($_POST['password'] == "shrestha") ){
-           // $mysqli = require __DIR__."/database.php";
-            $error_message  = '';
-        /* if ($_SERVER['REQUEST_METHOD'] === 'POST'){
-                
-                if((empty($_POST["startTimestamp"])) || (empty($_POST["endTimestamp"]))){
-                    die("Error, please enter proper value in timestamp box.");
-                }    
-                
-
-                if ((strtotime($_POST["endTimestamp"])) <  (strtotime($_POST["startTimestamp"]))){
-                    die("Error, please try again.<br> End Time is greater than Start Time.");
-                }
-            }
-            if (empty($error_message)){*/
-                
-                
+        else{*/
                     //Retriving Column name from database
                     $tableName ='sampleinputdata';
                     $query ="SHOW COLUMNS FROM $tableName";
@@ -45,7 +28,6 @@
                     }
                 //}    
         //else{
-        //    die("wrong credential");
         //}
         //}
     ?>
