@@ -1,18 +1,20 @@
 <?php
     $mysqli = require __DIR__."/database.php";
 
-    //Retriving Column name from database
+    //Retrieving Column name from database
     $tableName ='sampleinputdata';
     $query ="SHOW COLUMNS FROM $tableName";
     $result = $mysqli->query($query);
 
 
     //creating empty array and populating array using result 
-    $coulmns = [];
+    $columns = []; // creating an array for storing data
+    //while loop which will loop through each index of data and store it in column array 
     while ($row = $result -> fetch_assoc()){
         $columns[] = $row['Field']; 
     }
 
+    //print_r($columns);
     // Retrieve distinct timestamps from the database
     $timestampQuery = "SELECT DISTINCT timestamp FROM $tableName";
     $timestampResult = $mysqli->query($timestampQuery);
@@ -87,12 +89,12 @@
     var selected_start = null;
     var selected_end = null;
     
-    //Event Listner for column selection
-    document.getElementById("columnSelect").addEventListener("change",function(){
-        selected_column=this.value;
-        
-        document.getElementById("selectedColumnInput").value=selected_column; //updating the hidden input field value with the selected column
-    })
+        //Event Listner for column selection
+        document.getElementById("columnSelect").addEventListener("change",function(){
+            selected_column=this.value;
+            
+            document.getElementById("selectedColumnInput").value=selected_column; //updating the hidden input field value with the selected column
+        })
 
     
     // Event listener for timestamp selection

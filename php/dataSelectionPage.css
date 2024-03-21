@@ -6,6 +6,7 @@ body{
 .dropdown-check-list {
 display: inline-block;
 margin: 15px 15px 7px;
+z-index: 999;
 }
 
 .dropdown-check-list .anchor {
@@ -77,6 +78,7 @@ display: block;
 }
 
 .startTime{
+    
     margin-bottom: 5px ;
     padding: 7px 7px 7px ;
 }
@@ -116,7 +118,7 @@ display: block;
 .input-time{
     background-color: none;
     font-size: Medium;
-    position: relative;
+    position: absolute;
     margin: 12px 3px 10px ;
     padding-top: 20px;
     padding-left: 10px;

@@ -24,7 +24,7 @@
    while($row = $result->fetch_assoc()) 
         { 
             $column_data[] = $row;
-            echo "$selectedColumn: " . $row["$selectedColumn"] . "<br>";
+           // echo "$selectedColumn: " . $row["$selectedColumn"] . "<br>";
         } 
     
     /*foreach ($dataFuelMainfold as $dataFuelMainfold) {

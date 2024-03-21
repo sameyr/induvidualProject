@@ -46,6 +46,7 @@
                 $columnData[$column][] = $row[$column];
             }
         }
+
         //print_r ($columnData); //prints everything in multi-dimensional array    
         // prints the data for each selected column
         /*foreach ($columnData as $column => $data) {
@@ -93,6 +94,7 @@
             var data = columns.map(function(columns) {
                 return columnData[columns];
             });   
+          
 
             //adding css to the graph
             var containerDiv=d3.select("body")
@@ -112,6 +114,41 @@
                 .append("g")
                 .attr("transform", "translate(150,100)");
 
+            //adding a legend
+            var legendData = columns;
+
+            var colorScale = d3.scaleOrdinal(d3.schemeCategory10); // Color scale for different lines
+
+            // Creating legend
+            var legend = containerDiv.append("div")
+                .attr("class", "legend")
+                .style("position", "absolute")
+                .style("top", "20px") 
+                .style("right", "20px") 
+                .style("text-align", "left");
+
+
+            // Add legend items
+            legend.selectAll(".legend-item")
+                .data(legendData)
+                .enter().append("div")
+                .attr("class", "legend-item")
+                .style("display", "flex")
+                .style("align-items", "center")
+                .style("margin-left", "20px")
+                .style("margin-bottom", "5px")
+                .each(function(d, i) {
+                    var legendItem = d3.select(this);
+                    legendItem.append("div")
+                        .style("width", "10px")
+                        .style("height", "10px")
+                        .style("background-color", colorScale(i))
+                        .style("margin-right", "15px");
+                    legendItem.append("div")
+                        .text(d);
+                });
+
+
             var xScale = d3.scaleLinear()
                             .domain([0, data[0].length - 1])
                             .range([0, 500]);
@@ -119,8 +156,6 @@
             var yScale = d3.scaleLinear()
                             .domain([d3.min(data.flat()), d3.max(data.flat())])
                             .range([200, 10]);
-
-            var colorScale = d3.scaleOrdinal(d3.schemeCategory10); // Color scale for different lines
 
             var line = d3.line()
                 .x(function(d, i) { return xScale(i); })
