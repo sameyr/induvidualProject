@@ -13,19 +13,22 @@ body{
 }
 
 .welcome-text{
-    font-size: medium;
+    font-family:cursive;
+    font-size: large;
     font-weight: bold ;
+    color: rgb(255, 153, 0);
 }
 
+.home-btn,
+.password-btn,
 .signout-btn{
     position: absolute;
-    top:17px;
-    right:15px;
+    top:22px;
     background-color: rgb(255, 255, 255);
-    color: #191970;
+    color: rgb(255, 153, 0);
     border:1px;
     border-style: solid;
-    border-color:rgb(6,95,212);
+    border-color:rgb(255, 153, 0);
     border-radius: 4px;
     padding-left: 12px;
     padding-right: 12px ;
@@ -36,12 +39,28 @@ body{
     box-shadow: 5px 5px 5px rgba(0,0,0, 0.3);
 }
 
+.signout-btn{
+    right: 16px;
+}
+
+.home-btn{
+    right: 260px;
+}
+
+.password-btn{
+    right: 108px;
+}
+
+.home-btn:active,
+.password-btn:active,
 .signout-btn:active{
     box-shadow: none;
-    top: 10px;
+    top: 18px;
     margin-bottom: 0;
 }
 
+.home-btn:hoover,
+.password-btn:hoover,
 .signout-btn:hover{
     opacity: 1;
     background-color: rgb(223, 225, 238);
@@ -51,9 +70,9 @@ body{
     background-color: rgb(223, 225, 238);
     position: fixed;
     z-index: 1000;
-    bottom: 0px;;
+    bottom: 0px;
     left:10px;
-    top:72px;
+    top:90px;
     width: 100px;
     border-radius: 18px;
     padding-top:8px ;
@@ -109,8 +128,9 @@ body{
 
 .info-icon{
     display: block;
-    width: 40%;
+    width: 35%;
     margin: auto;
+    margin-top: 15px;
 }
 
 .infoTitleContainer{
@@ -121,8 +141,9 @@ body{
 }
 
 .info-title{
-    font-size: 14px;
-    font-weight:500;
+    font-size: medium;
+    font-weight:700;
+    color: rgb(255, 136, 0);
     width: 100%;
     cursor: pointer;
 }

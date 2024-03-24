@@ -10,11 +10,13 @@
     <body>
         <div class="header">
             <p class="welcome-text">WELCOME ADMIN!</p>
+            <button class = "home-btn" onClick="location = 'adminPage.php'" type="button"><b>Home</b></button>
+            <button class = "password-btn" onClick="" type="button"><b>Change Password</b></button>
             <button class="signout-btn" onclick="signout()"><b>Sign Out</b></button>
         </div>
 
         <div class="sidebar">
-            <p>DASHBOARD</p>
+            
             <div class="div-dashIcon">
                 <img class ="dashboard-icon" id="git" src="/icons/gitIcon.png">
                 <img class ="dashboard-icon" id="linkedin" src="/icons/linkedInIcon.png">

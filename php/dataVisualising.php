@@ -95,6 +95,18 @@
                 return columnData[columns];
             });   
           
+             //adding a legend
+             var legendData = columns;
+
+            var colorScale = d3.scaleOrdinal(d3.schemeCategory10); // Color scale for different lines
+
+            var xScale = d3.scaleLinear()
+                            .domain([0, data[0].length - 1])
+                            .range([0, 500]);
+
+            var yScale = d3.scaleLinear()
+                            .domain([d3.min(data.flat()), d3.max(data.flat())])
+                            .range([200, 10]);
 
             //adding css to the graph
             var containerDiv=d3.select("body")
@@ -114,10 +126,6 @@
                 .append("g")
                 .attr("transform", "translate(150,100)");
 
-            //adding a legend
-            var legendData = columns;
-
-            var colorScale = d3.scaleOrdinal(d3.schemeCategory10); // Color scale for different lines
 
             // Creating legend
             var legend = containerDiv.append("div")
@@ -148,15 +156,6 @@
                         .text(d);
                 });
 
-
-            var xScale = d3.scaleLinear()
-                            .domain([0, data[0].length - 1])
-                            .range([0, 500]);
-
-            var yScale = d3.scaleLinear()
-                            .domain([d3.min(data.flat()), d3.max(data.flat())])
-                            .range([200, 10]);
-
             var line = d3.line()
                 .x(function(d, i) { return xScale(i); })
                 .y(function(d) { return yScale(d); });
@@ -178,6 +177,29 @@
             //adding y-axis
             container.append("g")
                 .call(d3.axisLeft(yScale));
+
+                /* Define the style for the gridlines */
+
+            /* Adding vertical gridlines
+            container.append("g")
+                .attr("class", "grid")
+                .attr("transform", "translate(0," + 400 + ")")
+                .call(d3.axisBottom(xScale)
+                    .tickSize(-400)
+                    .tickFormat("")
+                );
+
+            // Adding horizontal gridlines
+            container.append("g")
+                .attr("class", "grid")
+                .call(d3.axisLeft(yScale)
+                    .tickSize(-600)
+                    .tickFormat("")
+                );
+
+                .grid line {
+              stroke: rgba(0, 0, 0, 0.1); }/* Adjust the opacity by changing the alpha value */
+
         </script>
 
         <form action="export.php" method="POST">
