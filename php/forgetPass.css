@@ -1,0 +1,139 @@
+body{
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    background-color: rgb(247, 247, 247);
+}
+
+.navBar{
+    background-color: white;
+    position: relative;
+    margin-left: 10px;
+    margin-right:10px;
+    padding: 10px 14px 0px;
+    height: 55px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+}
+
+.title{
+    margin-left: 10px ;
+    top: 10px; 
+    color: #191970;
+    font-size: large;
+    font-weight: bold ;
+}
+
+
+.signout-btn{
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    right: 20px;
+    color: #191970;
+    border:1px;
+    top:15px;
+    border-style: solid;
+    border-color:rgb(6,95,212);
+    border-radius: 4px;
+    padding-left: 12px;
+    padding-right: 12px ;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    cursor: pointer;
+    transition: 0.5s;
+    box-shadow: 5px 5px 5px rgba(0,0,0, 0.3);
+}
+
+.signout-btn:active{
+    box-shadow: none;
+    top: 13px;
+    margin-bottom: 0;
+}
+
+.signout-btn:hover{
+    opacity: 1;
+}
+
+.editForm{
+    display: flex;
+    width: 500px;
+    margin: auto;
+    margin-top:80px; 
+    border-radius: 20px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+    justify-content: center;
+    text-align: center;
+}
+
+.findAcc{
+    font-size: larger;
+    font-weight: bolder;
+    border-bottom-style:solid ;
+    border-bottom-width:1px ;
+    border-bottom-color: rgba(0, 0, 0, .1) ;
+}
+
+.findAcc2{
+    border-bottom-style:solid ;
+    border-bottom-width:1px ;
+    border-bottom-color: rgba(0, 0, 0, .1) ;
+    margin-bottom: 15px;
+}
+
+.input{
+    height: 45px;
+    width:400px;
+    padding-left: 10px;
+    right: 10px;
+    margin-bottom: 15px;
+    border: solid;
+    font-size: medium;
+    border-width: 1px;
+    border-radius:8px ;
+}
+
+.btn-div{
+    float: right;
+    right: 40px ;
+    bottom: 50px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+.button-cancel,
+.button-search{
+    font-weight: bolder;
+    border:1px;
+    border-style: solid;
+    border-radius: 4px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    cursor: pointer;
+    margin-right:8px;
+    vertical-align: top;
+    transition: background-color 0.2s , color 0.2s ;
+}
+
+.button-search{
+    background-color: rgb(255, 255, 255);
+    color:rgb(6,95,212);
+    border-color:rgb(6,95,212);
+}
+
+.button-cancel{
+    background-color: #e4e6eb;
+    border: none;
+    color: #4b4f56;
+}
+
+.button-search:hover{
+    background-color:rgb(6,95,212);
+    color: white;
+}
+
+.button-search:active{
+    opacity: 0.7;    
+}
+

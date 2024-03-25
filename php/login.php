@@ -26,6 +26,8 @@
     
                 <input class="button" type="submit"
                         name="login" value="Sign In">
+                    
+                <a href="forgetPass.php">Forget Your Password?</a>
 
                 <?php 
                     $fullUrl="http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
