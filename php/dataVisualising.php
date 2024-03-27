@@ -73,6 +73,7 @@
                 </div>
 
                 <div class="signoutBtn-div">
+                    <button class="back-btn" onclick="location = 'dataSelectionPage.php'"><b>Back</b></button>
                     <button class="signout-btn" onclick="signout()"><b>Sign Out</b></button>
                 </div>
         </nav>
@@ -102,11 +103,12 @@
 
             var xScale = d3.scaleLinear()
                             .domain([0, data[0].length - 1])
-                            .range([0, 500]);
+                            .range([0, 600]);
 
             var yScale = d3.scaleLinear()
                             .domain([d3.min(data.flat()), d3.max(data.flat())])
-                            .range([200, 10]);
+                            .range([250, 10]);
+
 
             //adding css to the graph
             var containerDiv=d3.select("body")
@@ -124,9 +126,7 @@
                 .attr("height", 500)
                 .attr("width", 700)
                 .append("g")
-                .attr("transform", "translate(150,100)");
-
-               /* Define the style for the gridlines */
+                .attr("transform", "translate(130,100)");
 
              //Adding gridlines
              container.selectAll(".grid-line")
@@ -134,23 +134,21 @@
                 .enter().append("line")
                 .attr("class", "grid-line")
                 .attr("x1", 0)
-                .attr("x2", 500)
+                .attr("x2", 600) // width of the graph
                 .attr("y1", d => yScale(d))
                 .attr("y2", d => yScale(d))
                 .style("stroke", "#ddd") // Grid line color
-                .style("stroke", "2,2"); // Dashed line style
 
-                // Adding vertical gridlines
+            // Adding vertical gridlines
             container.selectAll(".vertical-grid-line")
-                .data(xScale.ticks(5)) // Adjust the number of ticks as needed
+                .data(xScale.ticks(5)) // number of ticks
                 .enter().append("line")
                 .attr("class", "vertical-grid-line")
-                .attr("x1", d => xScale(d))
+                .attr("x1", d => xScale(d)) //calling scale function
                 .attr("x2", d => xScale(d))
                 .attr("y1", 0)
-                .attr("y2", 200) // Adjust this value based on the height of your graph
+                .attr("y2", 270) //  height of the graph
                 .style("stroke", "#ddd") // Grid line color
-                .style("stroke", "2,2"); // Dashed line style
 
 
             // Creating legend
@@ -159,7 +157,12 @@
                 .style("position", "absolute")
                 .style("top", "20px") 
                 .style("right", "20px") 
-                .style("text-align", "left");
+                .style("text-align", "left")
+                .style("border","solid")
+                .style("border-radius","7px")
+                .style("border-width","2px")
+                .style("padding","3px 8px 3px 2px")
+                .style("border-color","grey");
 
 
             // Add legend items
@@ -180,12 +183,17 @@
                         .style("margin-right", "15px");
                     legendItem.append("div")
                         .text(d);
-                });
+                });       
 
             var line = d3.line()
                 .x(function(d, i) { return xScale(i); })
                 .y(function(d) { return yScale(d); });
 
+            // Add tooltip
+            const tooltip = containerDiv.append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 0); // Initially hidden 
+                
             container.selectAll(".line")
                 .data(data)
                 .enter()
@@ -193,17 +201,59 @@
                 .attr("class", "line")
                 .attr("d", line)
                 .style("stroke", function(d, i) { return colorScale(i); })
-                .style("fill", "none");
+                .style("fill", "none")
+                .style("stroke", "rgb(51, 102, 204)")
+                .style("stroke-width","2")
+                .on("mouseover", function(d, i) {
+                d3.select(this).style("cursor", "pointer");
+                // Shows tooltip on hover
+                tooltip.transition()
+                    .duration(100)
+                    .style("opacity", .9);
+                // Extract x and y values of the hovered point
+                var mouseX = d3.mouse(this)[0];
+                var mouseY = d3.mouse(this)[1];
+                var xValue = xScale.invert(mouseX);
+                var yValue = yScale.invert(mouseY);
+                // Positioniing tooltip near the mouse pointer
+                tooltip.html("X: " + xValue.toFixed(2) + "<br>Y: " + yValue.toFixed(2));
+                })    
+                .on("mouseout", function(d) {
+                // Hiding tooltip on mouseout
+                tooltip.transition()
+                    .duration(500)
+                    .style("opacity", 0);
+                });
 
-            // adding x-asix
+            // adding x-axis
             container.append("g")
-                .attr("transform", "translate(0,200)")
+                .attr("transform", "translate(0,250)")
                 .call(d3.axisBottom(xScale));
                  
             //adding y-axis
             container.append("g")
                 .call(d3.axisLeft(yScale));
 
+              // Add x-axis label
+              container.append("text")
+                .attr("class", "x-axis-label")
+                .attr("x", 275)
+                .attr("y", 290) // Adjust the position as needed
+                .attr("text-anchor", "middle")
+                .text("Array Index")
+                .style("font-size","13px");
+
+            // Add y-axis label
+            container.append("text")
+                .attr("class", "y-axis-label")
+                .attr("transform", "rotate(-90)") // Rotate the label to make it vertical
+                .attr("x", -125)
+                .attr("y", -60) // Adjust the position as needed
+                .attr("dy", "1em")
+                .attr("text-anchor", "middle")
+                .text(legendData)
+                .style("font-size","13px");
+        
         </script>
 
         <form action="export.php" method="POST">

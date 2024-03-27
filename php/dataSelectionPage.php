@@ -82,10 +82,7 @@
                     </div>
                 </div>
 
-                <div class="btn-div">
-                    <button class = "button" type="submit" name="submit">Submit</button>
-                </div>
-
+                <div class = "error">
                 <?php 
                 $fullUrl="http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
                     if(strpos($fullUrl,"submit=starttimegreater") == true){
@@ -94,7 +91,13 @@
                     else if (strpos($fullUrl,"submit=emptyColumn") == true){
                         echo "<p class='error'> Error, please try again.<br> Select appropriate column before submittng. <p>";}
                 ?>
+                </div>
+
+                <div class="btn-div">
+                    <button class = "button" type="submit" name="submit">Submit</button>
+                </div>
             </div>
+    
         </form>
 
         <script>

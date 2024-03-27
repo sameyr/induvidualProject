@@ -30,7 +30,8 @@ body{
     margin-top: 7px;
 }
 
-.signout-btn{
+.signout-btn,
+.back-btn{
     background-color: rgb(255, 255, 255);
     color: #191970;
     border:1px;
@@ -46,12 +47,18 @@ body{
     box-shadow: 5px 5px 5px rgba(0,0,0, 0.3);
 }
 
+.back-btn{
+    margin-left: -80px;
+}
+
+.back-btn:active,
 .signout-btn:active{
     box-shadow: none;
     top: 10px;
     margin-bottom: 0;
 }
 
+.back-btn:hover,
 .signout-btn:hover{
     opacity: 1;
 }
