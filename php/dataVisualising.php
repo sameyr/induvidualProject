@@ -126,6 +126,32 @@
                 .append("g")
                 .attr("transform", "translate(150,100)");
 
+               /* Define the style for the gridlines */
+
+             //Adding gridlines
+             container.selectAll(".grid-line")
+                .data(yScale.ticks(5))
+                .enter().append("line")
+                .attr("class", "grid-line")
+                .attr("x1", 0)
+                .attr("x2", 500)
+                .attr("y1", d => yScale(d))
+                .attr("y2", d => yScale(d))
+                .style("stroke", "#ddd") // Grid line color
+                .style("stroke", "2,2"); // Dashed line style
+
+                // Adding vertical gridlines
+            container.selectAll(".vertical-grid-line")
+                .data(xScale.ticks(5)) // Adjust the number of ticks as needed
+                .enter().append("line")
+                .attr("class", "vertical-grid-line")
+                .attr("x1", d => xScale(d))
+                .attr("x2", d => xScale(d))
+                .attr("y1", 0)
+                .attr("y2", 200) // Adjust this value based on the height of your graph
+                .style("stroke", "#ddd") // Grid line color
+                .style("stroke", "2,2"); // Dashed line style
+
 
             // Creating legend
             var legend = containerDiv.append("div")
@@ -177,28 +203,6 @@
             //adding y-axis
             container.append("g")
                 .call(d3.axisLeft(yScale));
-
-                /* Define the style for the gridlines */
-
-            /* Adding vertical gridlines
-            container.append("g")
-                .attr("class", "grid")
-                .attr("transform", "translate(0," + 400 + ")")
-                .call(d3.axisBottom(xScale)
-                    .tickSize(-400)
-                    .tickFormat("")
-                );
-
-            // Adding horizontal gridlines
-            container.append("g")
-                .attr("class", "grid")
-                .call(d3.axisLeft(yScale)
-                    .tickSize(-600)
-                    .tickFormat("")
-                );
-
-                .grid line {
-              stroke: rgba(0, 0, 0, 0.1); }/* Adjust the opacity by changing the alpha value */
 
         </script>
 
