@@ -216,7 +216,15 @@
                 var xValue = xScale.invert(mouseX);
                 var yValue = yScale.invert(mouseY);
                 // Positioniing tooltip near the mouse pointer
-                tooltip.html("X: " + xValue.toFixed(2) + "<br>Y: " + yValue.toFixed(2));
+                tooltip.html("X: " + xValue.toFixed(2) + "<br>Y: " + yValue.toFixed(2))
+                .style("border","none")
+                    .style("width","100px")
+                    .style("margin","auto")
+                    .style("border-radius","4px")
+                    .style("border-color","#dddd")
+                    .style("background-color","rgb(5, 106, 238)")
+                    .style("color","white")
+                    .style("padding","4px 4px");
                 })    
                 .on("mouseout", function(d) {
                 // Hiding tooltip on mouseout
@@ -244,7 +252,7 @@
                 .style("font-size","13px");
 
             // Add y-axis label
-            container.append("text")
+            /*container.append("text")
                 .attr("class", "y-axis-label")
                 .attr("transform", "rotate(-90)") // Rotate the label to make it vertical
                 .attr("x", -125)
@@ -252,7 +260,7 @@
                 .attr("dy", "1em")
                 .attr("text-anchor", "middle")
                 .text(legendData)
-                .style("font-size","13px");
+                .style("font-size","13px");*/
         
         </script>
 
