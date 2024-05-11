@@ -40,7 +40,7 @@
                     <input type= "hidden" name="userID" value="<?php echo $row['ID']?>">
                 </div>
                 <select required name="userType">
-                    <option value="">--Select User Type--</option>
+                    <option value="">-Select User Type-</option>
                     <option value="Teacher" <?=  $row['Roles']=="Teacher" ? 'selected' : ''?> >Teacher</option>
                     <option value="Student" <?=  $row['Roles']=="Student" ? 'selected':'' ?>>Student</option>
                 </select>                

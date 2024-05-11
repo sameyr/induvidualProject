@@ -4,7 +4,7 @@
 
 <!DOCTYPE HTML>
 <html>
-    <head>
+    <head> 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="userDatabase.css">
@@ -56,7 +56,7 @@
                 <td><input class="check" type="checkbox"></td>
             </tr>
 
-            <?php
+        <?php
             }
             ?>
             <button class ="deleteUser" id ="deleteUser"><b>Delete</b></button>
@@ -68,6 +68,7 @@
             <button class = "addUser" onclick="location = 'registrationPage.php'"><b>Add User</b></button>
         </div>
     </body>
+
     <script>
         function signout(){
             return location.replace("./login.php");

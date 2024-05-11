@@ -26,7 +26,7 @@
         <form method="post" class="user" action="" autocomplete="on">
 
                 <select required name="userType">
-                    <option value="">--Select User Type--</option>
+                    <option value="">-Select User Type-</option>
                     <option value="Teacher">Teacher</option>
                     <option value="Student">Student</option>
                 </select>

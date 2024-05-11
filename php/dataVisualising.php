@@ -47,6 +47,7 @@
             }
         }
 
+           
         //print_r ($columnData); //prints everything in multi-dimensional array    
         // prints the data for each selected column
         /*foreach ($columnData as $column => $data) {
@@ -202,7 +203,7 @@
                 .attr("d", line)
                 .style("stroke", function(d, i) { return colorScale(i); })
                 .style("fill", "none")
-                .style("stroke", "rgb(51, 102, 204)")
+                //.style("stroke", "rgb(51, 102, 204)")
                 .style("stroke-width","2")
                 .on("mouseover", function(d, i) {
                 d3.select(this).style("cursor", "pointer");
